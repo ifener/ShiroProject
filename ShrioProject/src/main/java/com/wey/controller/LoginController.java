@@ -22,6 +22,7 @@ import com.wey.shrio.util.PasswordUtil;
 @Controller
 public class LoginController {
     
+    // https://blog.csdn.net/qq_39874546/article/details/79081950
     @Autowired
     private UserService userService;
     

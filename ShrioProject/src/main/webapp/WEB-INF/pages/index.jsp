@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+\<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
@@ -147,6 +147,29 @@
 				</tr>
 			</tbody>
 		</table>
+		<div class="card card-block">
+			<h3 class="card-title">3.其权限过滤器及配置释义</h3>
+			<div class="card-text">
+				<h4 class="text-bold">anon:</h4>
+				<p>例子/admins/**=anon 没有参数，表示可以匿名使用。</p>
+				<h4 class="text-bold">roles(角色):</h4>
+				<p>例子/admins/user/**=roles[admin],参数可以写多个，参数之间用逗号分割，当有多个参数时，例如admins/user/**=roles["admin,guest"],每个参数通过才算通过，相当于hasAllRoles()方法。</p>
+				<h4 class="text-bold">authc:</h4>
+				<p>例如/admins/user/**=authc表示需要认证(登录)才能使用，没有参数</p>
+				<h4 class="text-bold">perms（权限）：</h4>
+				<p>例子/admins/user/**=perms[add],参数可以写多个，例如/admins/user/**=perms["add, modify"]，当有多个参数时必须每个参数都通过才通过，想当于isPermitedAll()方法。</p>
+				<h4 class="text-bold">rest:</h4>
+				<p>例子/admins/user/**=rest[user],根据请求的方法，相当于/admins/user/**=perms[user:method] ,其中method为post，get，delete等。</p>
+				<h4 class="text-bold">port:</h4>
+				<p>例子/admins/user/**=port[8081],当请求的url的端口不是8081是跳转到schemal://serverName:8081?queryString,其中schmal是协议http或https等，serverName是你访问的host,8081是url配置里port的端口，queryString是你访问的url里的？后面的参数。</p>
+				<h4 class="text-bold">authcBasic:</h4>
+				<p>例如/admins/user/**=authcBasic没有参数.表示httpBasic认证</p>
+				<h4 class="text-bold">ssl:</h4>
+				<p>例子/admins/user/**=ssl没有参数，表示安全的url请求，协议为https</p>
+				<h4 class="text-bold">user:</h4>
+				<p>例如/admins/user/**=user没有参数表示必须存在用户，当登入操作时不做检查</p>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
