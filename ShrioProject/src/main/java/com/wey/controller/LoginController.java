@@ -35,10 +35,13 @@ public class LoginController {
     public ModelAndView doLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
         usernamePasswordToken.setRememberMe(true);
+        
+        //Subject是Shiro的核心对象，基本所有身份验证、授权都是通过Subject完成。
         Subject subject = SecurityUtils.getSubject();
         
         try {
             User user = new User();
+            user.setUsername(username);
             user.setPassword(password);
             PasswordUtil.encryptPassword(user);
             subject.login(usernamePasswordToken);
@@ -72,6 +75,15 @@ public class LoginController {
         
         User user = userService.findByUsername(username);
         subject.getSession().setAttribute("user", user);
+        
+        /**
+         * 我们可以直接调用subject.getPrincipal获取PrimaryPrincipal（即所谓的第一个）；
+         * 或者通过getPrincipals获取PrincipalCollection；
+         * 然后通过其getPrimaryPrincipal获取PrimaryPrincipal。
+         */
+        //subject.getPrincipals().getPrimaryPrincipal();
+        //subject.getPrincipal();
+        
         return new ModelAndView("redirect:/home/index");
     }
     

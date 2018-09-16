@@ -76,6 +76,7 @@ public class UserRealm extends AuthorizingRealm {
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
         String username = usernamePasswordToken.getUsername();
         // String username = (String) token.getPrincipal();
+        //String password = new String((char[])token.getCredentials()); //得到密码  
         User user = userService.findByUsername(username);
         if (user == null) {
             // 用户名不存在抛出异常
@@ -90,8 +91,9 @@ public class UserRealm extends AuthorizingRealm {
         // throw new IncorrectCredentialsException();
         // }
         
+      //如果身份认证验证成功，返回一个AuthenticationInfo实现；  
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user.getUsername(), user
-                .getPassword(), ByteSource.Util.bytes(com.wey.shrio.util.PasswordUtil.CREDENTIALS), getName());
+                .getPassword(), ByteSource.Util.bytes(user.getCredentialsSalt()), getName());
         return authenticationInfo;
     }
     
