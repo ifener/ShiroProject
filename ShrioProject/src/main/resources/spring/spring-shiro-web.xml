@@ -64,6 +64,8 @@
             <value>
                 /admin/index = roles[admin]
                 /home/** = authc
+                <!-- 基于Basic的拦截器身份验证 -->
+                /role/** = authcBasic,roles[admin]   
                 /** = anon
             </value>
         </property>
