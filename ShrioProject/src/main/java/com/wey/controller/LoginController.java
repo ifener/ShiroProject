@@ -9,6 +9,8 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.session.mgt.ServletContainerSessionManager;
 import org.apache.shiro.web.util.SavedRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,6 +42,8 @@ public class LoginController {
         // org.apache.shiro.web.filter.mgt.DefaultFilter
         // org.apache.shiro.web.filter.authc.FormAuthenticationFilter
         // org.apache.shiro.web.filter.authc.AuthenticationFilter
+    	//DefaultWebSecurityManager//使用的默认实现，用于Web环境，其直接使用Servlet容器的会话；
+    	//ServletContainerSessionManager 
         return "/login";
     }
     

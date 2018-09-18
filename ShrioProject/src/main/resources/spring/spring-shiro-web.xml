@@ -49,6 +49,8 @@
         <!-- 继承AuthorizingRealm的类-->
         <property name="realm" ref="userRealm" />
         <property name="rememberMeManager" ref="rememberMeManager" />
+        <!-- 缓存管理器，用于管理缓存的 -->
+        <property name="cacheManager" ref="cacheManager"></property>
     </bean>
 
     <!-- Shiro的Web过滤器 -->
