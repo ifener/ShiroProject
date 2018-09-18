@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wey.constants.Constants;
 import com.wey.framework.util.StringUtil;
 import com.wey.pojo.User;
 import com.wey.service.UserService;
@@ -36,13 +37,19 @@ public class LoginController {
     
     @GetMapping("/login")
     public String login() {
+        // org.apache.shiro.web.filter.mgt.DefaultFilter
+        // org.apache.shiro.web.filter.authc.FormAuthenticationFilter
+        // org.apache.shiro.web.filter.authc.AuthenticationFilter
         return "/login";
     }
     
     @PostMapping("/login")
-    public ModelAndView doLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public ModelAndView doLogin(@RequestParam("username") String username, @RequestParam("password") String password,
+            @RequestParam(name = "rememberMe", required = false) String rememberMe) {
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
-        usernamePasswordToken.setRememberMe(true);
+        if (Constants.BOOLEAN_Y.equals(rememberMe)) {
+            usernamePasswordToken.setRememberMe(true);
+        }
         
         // Subject是Shiro的核心对象，基本所有身份验证、授权都是通过Subject完成。
         Subject subject = SecurityUtils.getSubject();
@@ -57,6 +64,7 @@ public class LoginController {
             // 是否已经验证
             boolean authenticated = subject.isAuthenticated();
             System.out.println("是否已经验证=" + authenticated);
+            System.out.println("Is remember me is " + subject.isRemembered());
             boolean hasRole = subject.hasRole("ADMIN");
             System.out.println("是否有ADMIN的角色=" + hasRole);
             boolean permitted = subject.isPermitted("printer:print");
@@ -94,13 +102,15 @@ public class LoginController {
         
         // 登录后判断是否有登录之前的页面，如果有则跳转回登录前的页面
         SavedRequest savedRequest = (SavedRequest) subject.getSession().getAttribute("shiroSavedRequest");
-        String returnUrl = savedRequest.getRequestUrl();
-        
-        if (!StringUtil.isRealEmpty(returnUrl)) {
+        if (savedRequest != null) {
+            String returnUrl = savedRequest.getRequestUrl();
             
-            String contextPath = request.getContextPath();
-            returnUrl = returnUrl.replace(contextPath, "");
-            return new ModelAndView("redirect:" + returnUrl);
+            if (!StringUtil.isRealEmpty(returnUrl)) {
+                
+                String contextPath = request.getContextPath();
+                returnUrl = returnUrl.replace(contextPath, "");
+                return new ModelAndView("redirect:" + returnUrl);
+            }
         }
         
         return new ModelAndView("redirect:/home/index");

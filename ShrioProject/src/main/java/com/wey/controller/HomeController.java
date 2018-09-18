@@ -11,18 +11,19 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/home")
 public class HomeController {
     
-    //@RequiresAuthentication
+    // @RequiresAuthentication
     @GetMapping("/index")
     public ModelAndView index(ModelAndView mv) {
-    	Subject subject = SecurityUtils.getSubject();
-    	mv.setViewName("/home/index");
-    	String username = subject.getPrincipal().toString();
+        Subject subject = SecurityUtils.getSubject();
+        mv.setViewName("/home/index");
+        String username = subject.getPrincipal().toString();
         mv.addObject("username", username);
         
         boolean remembered = subject.isRemembered();
         mv.addObject("remember", remembered);
         boolean authenticated = subject.isAuthenticated();
         mv.addObject("authenticated", authenticated);
+        
         return mv;
     }
 }

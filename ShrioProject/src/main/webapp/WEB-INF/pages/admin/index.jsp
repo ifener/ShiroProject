@@ -52,7 +52,10 @@
 					这里是/admin/index
 				</li>
 			</ul>
-
+			<p>Shiro:http://jinnianshilongnian.iteye.com/blog/2018398</p>
+			<p>isAuthenticated/isRemembered是互斥的，即如果其中一个返回true，另一个返回false。</p>
+			<p>remember:${remember}</p>
+			<p>authenticated:${authenticated}</p>
 		</div>
 	</div>
 </body>

@@ -44,6 +44,10 @@
 						</a>
 					</li>
 				</ul>
+				
+				<div class="navbar-form navbar-right">
+        			<a href="${ctx}/logout" class="btn btn-primary">登出</a>
+          		</div>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>
@@ -311,6 +315,102 @@ return filterChainResolver;
 				</pre>
 			</div>
 		</div>
+		
+		<div class="card card-block">
+			<h3 class="card-title">8.默认拦截器</h3>
+			<div class="card-text">
+				<p>Shiro内置了很多默认的拦截器，比如身份验证、授权等相关的。默认拦截器可以参考</p>
+				<p>org.apache.shiro.web.filter.mgt.DefaultFilter中的枚举拦截器：  </p>
+				<div>
+					<table class="table table-striped table-bordered table-condensed">
+						<tbody>
+							<tr>
+								<th>默认拦截器名</th>
+								<th>拦截器类</th>
+								<th>说明（括号里的表示默认值）</th>
+							</tr>
+							<tr>
+								<td>
+									<strong>身份验证相关的</strong>
+								</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>authc</td>
+								<td>org.apache.shiro.web.filter.authc.FormAuthenticationFilter</td>
+								<td>
+									基于表单的拦截器；如“/**=authc”，如果没有登录会跳到相应的登录页面登录；主要属性：usernameParam：表单提交的用户名参数名（ username）； &nbsp;passwordParam：表单提交的密码参数名（password）； rememberMeParam：表单提交的密码参数名（rememberMe）；&nbsp; loginUrl：登录页面地址（/login.jsp）；successUrl：登录成功后的默认重定向地址； failureKeyAttribute：登录失败后错误信息存储key（shiroLoginFailure）；</p>
+								</td>
+							</tr>
+							<tr>
+								<td>authcBasic</td>
+								<td>org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter</td>
+								<td>Basic HTTP身份验证拦截器，主要属性： applicationName：弹出登录框显示的信息（application）</td>
+							</tr>
+							<tr>
+								<td>logout</td>
+								<td>org.apache.shiro.web.filter.authc.LogoutFilter</td>
+								<td>退出拦截器，主要属性：redirectUrl：退出成功后重定向的地址（/）;示例“/logout=logout”</td>
+							</tr>
+							<tr>
+								<td>user</td>
+								<td>org.apache.shiro.web.filter.authc.UserFilter</td>
+								<td>用户拦截器，用户已经身份验证/记住我登录的都可；示例“/**=user”</td>
+							</tr>
+							<tr>
+								<td>anon</td>
+								<td>org.apache.shiro.web.filter.authc.AnonymousFilter</td>
+								<td>匿名拦截器，即不需要登录即可访问；一般用于静态资源过滤；示例“/static/**=anon”</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>授权相关的</strong>
+								</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td>roles</td>
+								<td>org.apache.shiro.web.filter.authz.RolesAuthorizationFilter</td>
+								<td>角色授权拦截器，验证用户是否拥有所有角色；主要属性： loginUrl：登录页面地址（/login.jsp）；unauthorizedUrl：未授权后重定向的地址；示例“/admin/**=roles[admin]”</td>
+							</tr>
+							<tr>
+								<td>perms</td>
+								<td>org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter</td>
+								<td>权限授权拦截器，验证用户是否拥有所有权限；属性和roles一样；示例“/user/**=perms["user:create"]”</td>
+							</tr>
+							<tr>
+								<td>port</td>
+								<td>org.apache.shiro.web.filter.authz.PortFilter</td>
+								<td>端口拦截器，主要属性：port（80）：可以通过的端口；示例“/test= port[80]”，如果用户访问该页面是非80，将自动将请求端口改为80并重定向到该80端口，其他路径/参数等都一样</td>
+							</tr>
+							<tr>
+								<td>rest</td>
+								<td>org.apache.shiro.web.filter.authz.HttpMethodPermissionFilter</td>
+								<td>rest风格拦截器，自动根据请求方法构建权限字符串（GET=read, POST=create,PUT=update,DELETE=delete,HEAD=read,TRACE=read,OPTIONS=read, MKCOL=create）构建权限字符串；示例“/users=rest[user]”，会自动拼出“user:read,user:create,user:update,user:delete”权限字符串进行权限匹配（所有都得匹配，isPermittedAll）</td>
+							</tr>
+							<tr>
+								<td>ssl</td>
+								<td>org.apache.shiro.web.filter.authz.SslFilter</td>
+								<td>SSL拦截器，只有请求协议是https才能通过；否则自动跳转会https端口（443）；其他和port拦截器一样；</td>
+							</tr>
+							<tr>
+								<td><strong>其他</strong></td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td>noSessionCreation</td>
+								<td>org.apache.shiro.web.filter.session.NoSessionCreationFilter</td>
+								<td>不创建会话拦截器，调用 subject.getSession(false)不会有什么问题，但是如果 subject.getSession(true)将抛出 DisabledSessionException异常；</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
 	</div>
 </body>
 </html>

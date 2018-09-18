@@ -26,7 +26,7 @@
     
       <!--rememberMe 30天 -->
     <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
-        <constructor-arg value="COOKIE_SHIRO" />
+        <constructor-arg value="KEN_COOKIE_SHIRO" />
         <!-- 浏览器中通过document.cookie可以获取cookie属性，设置了HttpOnly=true,在脚本中就不能的到cookie了。可以避免cookie被盗用。 -->
         <property name="httpOnly" value="true" />
         <property name="maxAge" value="2592000" />
@@ -64,8 +64,10 @@
             <value>
                 /admin/index = roles[admin]
                 /home/** = authc
+                /users/** = user
                 <!-- 基于Basic的拦截器身份验证 -->
                 /role/** = authcBasic,roles[admin]   
+                /guest/** = anon
                 /** = anon
             </value>
         </property>
