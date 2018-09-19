@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Implementation-Title: CAS
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: weisunqing
+Specification-Vendor: Jasig
+Specification-Title: CAS
+Implementation-Vendor-Id: com.wey
+Build-Jdk: 1.8.0_151
+Specification-Version: 0.0.1-SNAPSHOT
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Jasig
+

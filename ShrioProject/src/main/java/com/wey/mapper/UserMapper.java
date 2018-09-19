@@ -14,4 +14,12 @@ public interface UserMapper {
      * @return
      */
     public Long save(User user);
+    
+    /**
+     * 修改密码
+     * @param password
+     * @param username
+     * @return
+     */
+    public Long updatePassword(User user);
 }

@@ -9,4 +9,6 @@ public interface UserService {
     User findById(Long id);
     
     Long save(User user);
+    
+    Long updatePassword(User user);
 }

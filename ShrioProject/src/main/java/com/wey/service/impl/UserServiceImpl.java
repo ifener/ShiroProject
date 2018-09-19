@@ -30,4 +30,9 @@ public class UserServiceImpl implements UserService {
         return userMapper.save(user);
     }
     
+    @Override
+    public Long updatePassword(User user) {
+        return userMapper.updatePassword(user);
+    }
+    
 }

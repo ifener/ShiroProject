@@ -11,4 +11,9 @@ public class GuestController {
     public String index() {
         return "/guest/index";
     }
+    
+    @RequestMapping("center")
+    public String center() {
+        return "/center";
+    }
 }

@@ -1,6 +1,7 @@
 package com.wey.controller;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
     
     // @RequiresAuthentication
+    @RequiresRoles(value = "admin")
     @GetMapping("/index")
     public ModelAndView index(ModelAndView mv) {
         Subject subject = SecurityUtils.getSubject();

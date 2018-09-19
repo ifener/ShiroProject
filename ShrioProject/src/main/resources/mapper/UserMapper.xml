@@ -38,4 +38,8 @@
 		insert into User (username,password)
 		values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
 	</insert>
+	
+	<update id="updatePassword" parameterType="user">
+		update user set password=#{password},salt=#{salt} where username=#{username}
+	</update>
 </mapper>
