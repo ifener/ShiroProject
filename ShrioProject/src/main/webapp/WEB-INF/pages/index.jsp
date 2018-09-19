@@ -43,17 +43,17 @@
 	</nav>
 
 	<div class="container">
-		<div class="card my-4">
-			<h5 class="card-header">
-				<i class="fa fa-connectdevelop" aria-hidden="true"></i>导航
-			</h5>
-			<ul class="list-group">
-				<li class="list-group-item">
-					<a href="${ctx}/home/index">管理员中心</a>
-				</li>
-			</ul>
-
-		</div>
+		<h1>CAS客户端</h1>
+		<h3>1、首先使用localhost.keystore导出数字证书（公钥）到D:\localhost.cer</h3>
+		<pre>
+keytool -export -alias localhost -file D:\localhost.cer -keystore D:\localhost.keystore 
+		</pre>
+		<h3>2、因为CAS client需要使用该证书进行验证，需要将证书导入到JDK中： </h3>
+		<pre>
+cd D:\jdk1.7.0_21\jre\lib\security  
+keytool -import -alias localhost -file D:\localhost.cer -noprompt -trustcacerts -storetype jks -keystore cacerts -storepass 123456   
+		</pre>
+		<p>如果导入失败，可以先把security 目录下的cacerts删掉</p>
 	</div>
 </body>
 </html>
