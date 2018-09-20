@@ -126,6 +126,12 @@
 			<artifactId>shiro-core</artifactId>
 			<version>1.4.0</version>
 		</dependency>
+		<!-- shiro cas -->
+		 <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-cas</artifactId>
+            <version>1.2.2</version>
+        </dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
