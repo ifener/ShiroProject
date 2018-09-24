@@ -43,18 +43,56 @@
 	</nav>
 
 	<div class="container">
+		<h1>生成证书</h1>
+		<p>
+			keytool -genkey -keystore "D:\ssl.keystore" -alias localhost -keyalg RSA
+		</p>
 		<h1>CAS客户端</h1>
-		<h3>1、首先使用localhost.keystore导出数字证书（公钥）到D:\localhost.cer</h3>
+		<h3>1、首先使用localhost.keystore导出数字证书（公钥）到D:\ssl.cer</h3>
 		<pre>
-keytool -export -alias localhost -file D:\localhost.cer -keystore D:\localhost.keystore 
+keytool -export -alias localhost -file D:\ssl.cer -keystore D:\ssl.keystore 
 		</pre>
 		<h3>2、因为CAS client需要使用该证书进行验证，需要将证书导入到JDK中： </h3>
 		<pre>
-cd C:\Program Files\Java\jdk1.8.0_151\jre\lib\security  
-keytool -import -alias localhost -file D:\localhost.cer -noprompt -trustcacerts -storetype jks -keystore cacerts -storepass 123456   
+cd C:\Program Files\Java\jdk1.8.0_151\jre\lib\security
+keytool -import -alias localhost -file D:\ssl.cer -noprompt -trustcacerts -storetype jks -keystore cacerts -storepass ssl861110   
 		</pre>
 		<p>如果导入失败，可以先把security 目录下的cacerts删掉</p>
 		<p>删除：keytool -delete -alias localhost -keystore cacerts -storepass ssl861110</p>
+		
+		<h3>3.配置Tomcat</h3>
+		<pre>
+&lt;Connector SSLEnabled="true" clientAuth="false" 
+    keystoreFile="D:\02.Tomcat\ssl.keystore" 
+    keystorePass="ssl861110" maxThreads="200" port="8443" 
+    protocol="org.apache.coyote.http11.Http11NioProtocol" 
+    scheme="https" secure="true" sslProtocol="TLS"/&gt;
+		</pre>
+		<h3>4.常见的错误</h3>
+		<ol>
+			<li>
+				<dl>
+					<dt>No Name Matching localhost Found Error</dt>
+					<dd>
+						这是由于创建证书的时候询问您的名字与姓氏是什么?(What is your first and last name?)的时候要填写localhost,如果是域名要填写域名
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>InvalidAlgorithmParameterException: the trustAnchors parameter must be non-empty</dt>
+					<dd>
+						<p>这也是由于证书不正确引起的，在创建及导入证书的时候别名要用localhost或者域名</p>
+						<p>
+							
+							keytool -genkey -keystore "D:\ssl.keystore" -alias <span style="color:red;font-weight:bold;">localhost</span> -keyalg RSA<br />
+							keytool -export -alias <span style="color:red;font-weight:bold;">localhost</span> -file D:\ssl.cer -keystore D:\ssl.keystore<br />
+							keytool -import -alias <span style="color:red;font-weight:bold;">localhost</span> -file D:\ssl.cer -noprompt -trustcacerts -storetype jks -keystore cacerts -storepass ssl861110
+						</p>
+				    </dd>
+				</dl>
+			</li>
+		</ol>
 	</div>
 </body>
 </html>
