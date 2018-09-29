@@ -1,0 +1,5 @@
+com\wey\framework\util\MD5Util.class
+com\wey\framework\handler\LoginAuthenticationHandler.class
+com\wey\framework\util\CustomPasswordEncoder.class
+com\wey\app\App.class
+com\wey\framework\util\Student.class
