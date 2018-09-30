@@ -121,6 +121,24 @@
 					<scope>runtime</scope>
 				</dependency>
 				<!-- ...Additional dependencies may be placed here... -->
+				<!-- 自定义认证的方式 begin -->
+       <!--  <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-core-webflow</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-core-authentication</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-webapp-config</artifactId>
+            <version>${cas.version}</version>
+            <scope>provided</scope>
+        </dependency> -->
+
 				<dependency>
 					<groupId>org.apereo.cas</groupId>
 					<artifactId>cas-server-support-jdbc-drivers</artifactId>
@@ -143,6 +161,14 @@
 					<artifactId>mysql-connector-java</artifactId>
 					<version>8.0.11</version>
 				</dependency>
+				<!-- <dependency>
+					<groupId>org.apereo.cas</groupId>
+					<artifactId>cas-server-webapp${app.server}</artifactId>
+					<version>${cas.version}</version>
+					<type>jar</type>
+					<classifier>classes</classifier>
+					<scope>provided</scope>
+				</dependency> -->
 			</dependencies>
 		</profile>
 
