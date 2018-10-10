@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.wey.framework.handler.config.LoginAuthenticationHandlerConfiguration,\
+com.wey.framework.cas.config.SpringConfig,\
+com.wey.framework.cas.config.DruidDBConfig
+

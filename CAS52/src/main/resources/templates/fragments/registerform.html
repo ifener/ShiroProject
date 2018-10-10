@@ -1,0 +1,64 @@
+<div class="box" id="login">
+    <form method="post" id="fm1" th:action="@{/doRegister}">
+
+        <section class="row">
+            <label for="username" th:utext="#{screen.welcome.label.netid}"/>
+
+            <div th:if="${openIdLocalId}">
+                <strong>
+                    <span th:utext="${openIdLocalId}"/>
+                </strong>
+                <input type="hidden"
+                       id="username"
+                       name="username"
+                       th:value="${openIdLocalId}"/>
+            </div>
+            <div th:unless="${openIdLocalId}">
+                <input class="required"
+                       name="username"
+                       size="25"
+                       tabindex="1"
+                       type="text"
+                       autocomplete="off"/>
+            </div>
+        </section>
+
+        <section class="row">
+            <label for="password" th:utext="#{screen.welcome.label.password}"/>
+
+            <div>
+                <input class="required"
+                       type="password"
+                       id="password"
+                       name="password"
+                       size="25"
+                       tabindex="2"
+                       autocomplete="off"/>
+                <span id="capslock-on" style="display:none;">
+                    <p>
+                        <i class="fa fa-exclamation-circle"></i>
+                        <span th:utext="#{screen.capslock.on}"/>
+                    </p>
+                </span>
+            </div>
+        </section>
+
+        <section class="row check">
+            <p th:if="${passwordManagementEnabled}">
+                <input type="checkbox" name="doChangePassword" id="doChangePassword" value="true" th:checked="${param.doChangePassword != null}" tabindex="4"/>
+                <label for="doChangePassword" th:text="#{screen.button.changePassword}"/>
+            </p>
+        </section>
+
+
+        <section class="row btn-row">
+
+            <input class="btn btn-submit btn-block"
+                   name="submit"
+                   accesskey="l"
+                   value="注册"
+                   tabindex="6"
+                   type="submit"/>
+        </section>
+    </form>
+</div>
