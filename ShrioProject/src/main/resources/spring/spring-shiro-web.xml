@@ -50,7 +50,7 @@
 			<property name="casServerUrlPrefix" value="https://www.ifener.com:8443/CAS"/>  
     		<property name="casService" value="http://www.ifener.com:8080/ShrioProject/cas"/>  
     	 -->
-    	<property name="casServerUrlPrefix" value="https://localhost:8443/CAS"/>  
+    	<property name="casServerUrlPrefix" value="https://localhost:8443/CAS52"/>  
     	<property name="casService" value="http://localhost:8080/ShrioProject/cas"/>  
 	</bean>
 
@@ -86,7 +86,7 @@
 		<property name="securityManager" ref="securityManager" />
 		<!--<property name="loginUrl" value="/login" /> -->
 		<!-- <property name="loginUrl" value="https://www.ifener.com:8443/CAS/login?service=http://www.ifener.com:8080/ShrioProject/cas"/> -->
-		<property name="loginUrl" value="https://localhost:8443/CAS/login?service=http://localhost:8080/ShrioProject/cas"/>  
+		<property name="loginUrl" value="https://localhost:8443/CAS52/login?service=http://localhost:8080/ShrioProject/cas"/>  
 		<property name="successUrl" value="/" />
 		<property name="unauthorizedUrl" value="/denied" />
 		<!-- 过滤器 -->
