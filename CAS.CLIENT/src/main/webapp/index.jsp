@@ -22,6 +22,8 @@
 <p><b>Authenticated User Id:</b> <a href="logout.jsp" title="Click here to log out"><%= request.getRemoteUser() %>
 </a>
 	 <a href="https://cas.ifener.com:8443/CAS52/logout?service=https://cas.ifener.com:8443/CAS52/login">Logout</a>
+	 &nbsp;&nbsp;&nbsp;&nbsp;
+	 <a href="${pageContext.request.contextPath}/logout">Controller Logout</a>
 </p>
 
 <%
