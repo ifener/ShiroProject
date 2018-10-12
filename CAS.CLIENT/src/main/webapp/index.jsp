@@ -20,7 +20,9 @@
 <hr>
 
 <p><b>Authenticated User Id:</b> <a href="logout.jsp" title="Click here to log out"><%= request.getRemoteUser() %>
-</a></p>
+</a>
+	 <a href="https://cas.ifener.com:8443/CAS52/logout?service=https://cas.ifener.com:8443/CAS52/login">Logout</a>
+</p>
 
 <%
     if (request.getUserPrincipal() != null) {

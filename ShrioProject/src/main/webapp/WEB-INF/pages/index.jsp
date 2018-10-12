@@ -82,7 +82,7 @@ keytool -import -alias localhost -file D:\ssl.cer -noprompt -trustcacerts -store
 				<dl>
 					<dt>InvalidAlgorithmParameterException: the trustAnchors parameter must be non-empty</dt>
 					<dd>
-						<p>这也是由于证书不正确引起的，在创建及导入证书的时候别名要用localhost或者域名</p>
+						<p>这也是由于证书不正确引起的，在创建及导入证书的时候别名要用localhost或者域名(如：cas.ifener.com)</p>
 						<p>
 							
 							keytool -genkey -keystore "D:\ssl.keystore" -alias <span style="color:red;font-weight:bold;">localhost</span> -keyalg RSA<br />
