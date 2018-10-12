@@ -1,0 +1,9 @@
+{
+  "@class" : "org.apereo.cas.services.RegexRegisteredService",
+  "serviceId" : "^(https|imaps)://.*",
+  "name" : "localhost",
+  "theme" : "apereo",
+  "id" : 10000003,
+  "description" : "客户端要调用CAS要配置一个service,否则用不了",
+  "evaluationOrder" : 1
+}
